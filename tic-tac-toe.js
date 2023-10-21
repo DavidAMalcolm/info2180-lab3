@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         child[i].addEventListener("click",function(){
-            if(gametrack.length == 0 || token === "X"){
+            if((gametrack.length == 0 || token === "X") && (gametrack[i]!="X" && gametrack[i]!="O")){
                 gametrack[i] = "X";
                 console.log(gametrack);
                 token = "O";
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 child[i].classList.remove("O");
                 child[i].classList.add("X");
             }
-            else if (token == "O"){
+            else if (token == "O" && (gametrack[i]!="X" && gametrack[i]!="O")){
                 gametrack[i] = "O";
                 console.log(gametrack);
                 token = "X";
