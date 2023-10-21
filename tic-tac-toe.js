@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let gametrack = [];
     let token = "cross"
     var child = parent.getElementsByTagName("div");
-        
+    var statusBoard = document.getElementById("status");
+    var reset = document.querySelector(".btn");
+
     function brute(){
         const winningCombinations = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -39,32 +41,43 @@ document.addEventListener("DOMContentLoaded", function() {
             this.classList.remove("hover");
         })
 
+        reset.addEventListener("click",function(){
+            token = "X";
+            gametrack = [];
+            statusBoard.textContent = "Move your mouse over a square and click to play an X or an O.";
+            statusBoard.classList.remove("you-won");
+            for(let i = 0; i < child.length; i++){
+                child[i].classList.remove("O");
+                child[i].classList.remove("X");
+                child[i].textContent = " ";
+            }
+        });
+
         child[i].addEventListener("click",function(){
             if(gametrack.length == 0 || token === "X"){
-                gametrack[i] = "X"
-                console.log(gametrack)
-                token = "O"
+                gametrack[i] = "X";
+                console.log(gametrack);
+                token = "O";
                 child[i].textContent = "X"
-                child[i].classList.remove("O")
-                child[i].classList.add("X")
+                child[i].classList.remove("O");
+                child[i].classList.add("X");
             }
             else if (token == "O"){
-                gametrack[i] = "O"
-                console.log(gametrack)
-                token = "X"
-                child[i].textContent = "O"
-                child[i].classList.remove("X")
-                child[i].classList.add("O")
+                gametrack[i] = "O";
+                console.log(gametrack);
+                token = "X";
+                child[i].textContent = "O";
+                child[i].classList.remove("X");
+                child[i].classList.add("O");
             }
             if (brute()){
                 if (token=="X"){
-                    token = "O"
+                    token = "O";
                 }
                 else{
-                    token = "X"
+                    token = "X";
                 }
-                let statusBoard = document.getElementById("status");
-                statusBoard.textContent = "Congragulations! " + token + " is the Winner!";
+                statusBoard.textContent = "Congratulations! " + token + " is the Winner!";
                 statusBoard.classList.add("you-won");
             }
     })
