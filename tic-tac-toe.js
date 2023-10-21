@@ -11,6 +11,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         child[i].classList.add("square");
 
+        child[i].addEventListener("mouseover",function(){
+            this.classList.add("hover");
+        })
+
+        child[i].addEventListener("mouseout",function(){
+            this.classList.remove("hover");
+        })
+
         child[i].addEventListener("click",function(){
             if(gametrack.length == 0){
                 gametrack.push("X")
@@ -31,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 child[i].classList.add("X")
             }
     })
+    
+    
             
     }
 
